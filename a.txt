@@ -1,0 +1,7 @@
+echo "# javascript30" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add gin https://github.com/can101/javascript30.git
+git push -u gin main

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css variables - js30 | 3</title>
+    <style>
+        :root {
+            --base: #000;
+            --spacing: 10px;
+            --blur: 0px;
+        }
+
+        img {
+            background: var(--base);
+            padding: var(--spacing);
+            filter: blur(var(--blur));
+        }
+
+        body {
+            /* background: #334756; */
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            margin: 10px 0;
+            height: 3px;
+            width: 100px;
+            background: rgb(230, 229, 229);
+            border-radius: 50px;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            transition: all 1s ease-in;
+            cursor: pointer;
+            background: #343332;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="control-box">
+        <label for="spacing">Spacing</label>
+        <input type="range" name="spacing" min="0" max="200" value="10" id="spacing" data-sizing="px">
+        <label for="blur">Blur</label>
+        <input type="range" name="blur" min="0" max="25" value="0" id="spacing" data-sizing="px">
+        <label for="base">Base</label>
+        <input type="color" name="base" id="base">
+    </div>
+    <img src="./perceptual-standard.jpg" width="60%" alt="">
+
+    <script>
+        const inputs = document.querySelectorAll('input');
+        const hadleUpdate = (e) => {
+            var x = e.target.value;
+            // e.target.style.setProperty(`--{e.target}`, e.target.getAttribute("name") + (e.target.dataset.sizing || ""));
+            // console.log(e.target.getAttribute("name")+(e.target.dataset.sizing || ""));
+            document.querySelector('img').style.setProperty(`--${e.target.getAttribute("name")}`, e.target.value + (e.target.dataset.sizing || ""));
+        }
+        inputs.forEach(res => res.addEventListener('change',hadleUpdate));
+        inputs.forEach(res => res.addEventListener('mousemove',hadleUpdate));
+    </script>
+</body>
+
+</html>
